@@ -6,7 +6,12 @@ This script parses phone numbers from web-pages.
 ## Dependencies:
 [python-phonenumbers](https://github.com/daviddrysdale/python-phonenumbers)
 
+## Config:
+The sites to be parsed is set as 'links' var
+[here](main.py#L6).
+
 ## Deployment:
+
 If python 3.7+ is installed on local machine:
 
 1.
