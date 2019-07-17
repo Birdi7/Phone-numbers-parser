@@ -1,9 +1,7 @@
-import aiohttp
 import asyncio
-import logging
+import aiohttp
 
-logger = logging.getLogger(__name__)
-logger.setLevel(logging.DEBUG)
+import phonenumbers
 
 links = ['https://hands.ru/company/about',
          'https://repetitors.info/']
@@ -15,10 +13,15 @@ async def fetch(session, url):
 
 
 async def main():
+    numbers = set()
     for link in links:
         async with aiohttp.ClientSession() as session:
             html = await fetch(session, link)
-            print(html)
+            for match in phonenumbers.PhoneNumberMatcher(html, 'RU'):
+                phone_number = match.number
+                numbers.add("8" + str(phone_number.national_number))
+    numbers = list(numbers)
 
+    print("Found numbers: " + numbers[0], *(numbers[1:]), sep=', ')
 
 asyncio.run(main())
