@@ -22,6 +22,8 @@ async def main():
                 numbers.add("8" + str(phone_number.national_number))
     numbers = list(numbers)
 
-    print("Found numbers: " + numbers[0], *(numbers[1:]), sep=', ')
+    print("Found numbers:")
+    print(*numbers, sep='\n')
+
 
 asyncio.run(main())
